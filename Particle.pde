@@ -55,6 +55,6 @@ class Particle
     ellipse(0, 0, size, size);
     popMatrix();
     
-    lifespan -= 2;
+    // lifespan -= 2;
   }
 }

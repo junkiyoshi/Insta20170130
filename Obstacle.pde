@@ -47,7 +47,7 @@ class Obstacle
     {
       Wave w = it.next();
       w.run();
-      if(w.isDead(size * 2))
+      if(w.isDead())
       {
         it.remove();
       }

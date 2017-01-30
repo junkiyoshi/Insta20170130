@@ -50,7 +50,7 @@ void draw()
   
   if(frameCount % 15 == 0)
   {
-    float power = random(50, 150);
+    float power = random(100, 200);
     float x = power * cos(radians(random(360)));
     float y = power * sin(radians(random(360)));
     Particle p = new Particle(width / 2, height / 2, 25, color(random(255), 255, 255));
@@ -91,16 +91,32 @@ void beginContact(Contact cp)
   Object o1 = b1.getUserData();
   Object o2 = b2.getUserData();
   
+  if(o1.getClass() == Particle.class)
+  {
+    Particle p = (Particle)o1;
+    p.lifespan -= 30;
+  }
+  
+  if(o2.getClass() == Particle.class)
+  {
+    Particle p = (Particle)o2;
+    p.lifespan -= 30;
+  }
+  
   if(o1.getClass() == Obstacle.class)
   {
     Obstacle o = (Obstacle)o1;
     Particle p = (Particle)o2;
     o.changeColor(p.bodyColor);
+    return;
   }
   else if(o2.getClass() == Obstacle.class)
   {
     Obstacle o = (Obstacle)o2;
     Particle p = (Particle)o1;
     o.changeColor(p.bodyColor);
+    return;
   }
+  
+  
 }

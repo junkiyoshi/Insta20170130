@@ -2,12 +2,14 @@ class Wave
 {
   PVector center;
   float radius;
+  float lifespan;
   color bodyColor;
   
   Wave(float x, float y, float r, color c)
   {
     center = new PVector(x, y);
     radius = r;
+    lifespan = 255;
     bodyColor = c;
   }
   
@@ -20,6 +22,7 @@ class Wave
   void update()
   {
     radius += 1;
+    lifespan -= 3;
   }
   
   void display()
@@ -27,15 +30,15 @@ class Wave
     pushMatrix();
     translate(center.x, center.y);
     noFill();
-    stroke(bodyColor);
-    strokeWeight(1.5);
+    stroke(bodyColor, lifespan);
+    strokeWeight(2);
     ellipse(0, 0, radius, radius);
     popMatrix();
   }
   
-  boolean isDead(float value)
+  boolean isDead()
   {
-    if(radius > value)
+    if(lifespan < 0)
     {
       return true;
     }

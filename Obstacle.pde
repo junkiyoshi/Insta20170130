@@ -9,8 +9,8 @@ class Obstacle
   {
     x = x_;
     y = y_;
-    size = 80;
-    bodyColor = color(255);
+    size = 200;
+    bodyColor = color(64);
     makeBody(new Vec2(x, y));
     
     waves = new ArrayList<Wave>();

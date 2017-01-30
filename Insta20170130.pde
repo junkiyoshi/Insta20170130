@@ -15,46 +15,37 @@ Obstacle[] obstacles;
 
 void setup()
 {
-  size(512, 512);
-  background(255);
+  size(1080, 1080);
   frameRate(30);
   colorMode(HSB);
   
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
+  box2d.setGravity(0, -15);
   box2d.listenForCollisions();
   
   box = new Box();
   
   particles = new ArrayList<Particle>();
-  obstacles = new Obstacle[8];
-  obstacles[0] = new Obstacle(width / 6 * 1, height / 6 * 1);
-  obstacles[1] = new Obstacle(width / 6 * 1, height / 6 * 3);
-  obstacles[2] = new Obstacle(width / 6 * 1, height / 6 * 5);
-  obstacles[3] = new Obstacle(width / 6 * 5, height / 6 * 1);
-  obstacles[4] = new Obstacle(width / 6 * 5, height / 6 * 3);
-  obstacles[5] = new Obstacle(width / 6 * 5, height / 6 * 5);
-  obstacles[6] = new Obstacle(width / 6 * 3, height / 6 * 1);
-  obstacles[7] = new Obstacle(width / 6 * 3, height / 6 * 5);
+  obstacles = new Obstacle[3];
+  obstacles[0] = new Obstacle(width / 2, height / 2);
+  obstacles[1] = new Obstacle(width / 6 * 1, height / 6 * 4);
+  obstacles[2] = new Obstacle(width / 6 * 5, height / 6 * 4);
 }
 
 void draw()
 {
   box2d.step();
-  background(0);
+  background(255);
   
   for(Obstacle obs : obstacles)
   {
     obs.display();
   }
   
-  if(frameCount % 15 == 0)
+  if(frameCount % 30 == 1)
   {
-    float power = random(100, 200);
-    float x = power * cos(radians(random(360)));
-    float y = power * sin(radians(random(360)));
-    Particle p = new Particle(width / 2, height / 2, 25, color(random(255), 255, 255));
-    p.body.setLinearVelocity(new Vec2(x, y));
+    Particle p = new Particle(random(width * 0.2, width * 0.8), 50, 50, color(random(255), 255, 255));
     particles.add(p);
   }  
   
@@ -73,7 +64,7 @@ void draw()
   /*
   println(frameCount);
   saveFrame("screen-#####.png");
-  if(frameCount > 3600)
+  if(frameCount > 1800)
   {
      exit();
   }

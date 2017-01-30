@@ -21,9 +21,9 @@ class Particle
 
     FixtureDef fd = new FixtureDef();
     fd.shape = cs;
-    fd.density = 0.5;
+    fd.density = 1;
     fd.friction = 1;
-    fd.restitution = 1;
+    fd.restitution = 0.5;
 
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;

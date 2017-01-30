@@ -21,8 +21,8 @@ class Wave
   
   void update()
   {
-    radius += 1;
-    lifespan -= 3;
+    radius += 3;
+    lifespan -= 1;
   }
   
   void display()
@@ -31,7 +31,7 @@ class Wave
     translate(center.x, center.y);
     noFill();
     stroke(bodyColor, lifespan);
-    strokeWeight(2);
+    strokeWeight(10);
     ellipse(0, 0, radius, radius);
     popMatrix();
   }
